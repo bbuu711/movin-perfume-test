@@ -1,0 +1,368 @@
+/* ==========================================================================
+   MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST SCRIPT
+   ========================================================================== */
+
+// Question Data (5 Total)
+const QUESTIONS = [
+  {
+    id: 'Q1',
+    badge: 'Question 1',
+    title: '당신의 하루에서 향이 가장 필요할 것 같은 순간은?',
+    subtitle: '모빈의 멀티퍼퓸은 시간대별로 가장 어울리는 향을 제안합니다.',
+    options: [
+      { code: 'A', label: '하루를 시작할 때 🌅', val: 'Q1_A' },
+      { code: 'B', label: '사람을 만날 때 🤝', val: 'Q1_B' },
+      { code: 'C', label: '혼자 여유를 즐길 때 ☕', val: 'Q1_C' },
+      { code: 'D', label: '특별한 일이 있는 날 ✨', val: 'Q1_D' }
+    ]
+  },
+  {
+    id: 'Q2',
+    badge: 'Question 2',
+    title: '나에게 가장 가까운 주말은?',
+    subtitle: '주말에 전해지는 당신만의 휴식 방식을 선택해 주세요.',
+    options: [
+      { code: 'A', label: '좋아하는 카페에서 혼자 여유롭게 🍰', val: 'Q2_A' },
+      { code: 'B', label: '친구들과 만나서 신나게 🎉', val: 'Q2_B' },
+      { code: 'C', label: '새로운 곳에 가거나 데이트하며 🌿', val: 'Q2_C' },
+      { code: 'D', label: '집에서 푹 쉬면서 🛋️', val: 'Q2_D' }
+    ]
+  },
+  {
+    id: 'Q2_1',
+    badge: 'Question 2-1',
+    title: '그런데 평일의 나는?',
+    subtitle: '평일을 채우는 당신의 주된 생활 공간과 이동 형태입니다.',
+    options: [
+      { code: 'A', label: '학교에서 시간을 많이 보내요 📚', val: 'Q2_1_A' },
+      { code: 'B', label: '직장이나 알바를 해요 💼', val: 'Q2_1_B' },
+      { code: 'C', label: '이동하는 시간이 많아요 🚶‍♂️', val: 'Q2_1_C' },
+      { code: 'D', label: '대부분 집에서 보내요 🏡', val: 'Q2_1_D' }
+    ]
+  },
+  {
+    id: 'Q3',
+    badge: 'Question 3',
+    title: '사람들이 나를 어떻게 기억했으면 좋겠나요?',
+    subtitle: '당신의 걸음 끝에 은은하게 남았으면 하는 잔향의 첫인상입니다.',
+    options: [
+      { code: 'A', label: '설렘지수 200% 썸남/썸녀 다 넘어오는 향 💕', val: 'Q3_A' },
+      { code: 'B', label: '취업에 성공한 커리어맨/커리어우먼 👔', val: 'Q3_B' },
+      { code: 'C', label: '발랄하고 mbti E같은 모습으로 비춰질 수 있는 향 ⚡', val: 'Q3_C' },
+      { code: 'D', label: '영앤리치 처럼 보이는 향 💎', val: 'Q3_D' }
+    ]
+  },
+  {
+    id: 'Q4',
+    badge: 'Question 4',
+    title: '좋아하는 공간은?',
+    subtitle: '당신의 마음이 가장 편안해지고 감성이 살아나는 장소입니다.',
+    options: [
+      { code: 'A', label: '호텔 🏨', val: 'Q4_A' },
+      { code: 'B', label: '정원 🪴', val: 'Q4_B' },
+      { code: 'C', label: '바 🍸', val: 'Q4_C' },
+      { code: 'D', label: '서점 📖', val: 'Q4_D' }
+    ]
+  }
+];
+
+// Perfume Database mapped to Q1
+const PERFUMES = {
+  'Q1_A': {
+    nameKr: '그린 베르가못',
+    nameEn: 'GREEN BERGAMOT',
+    img: 'images/green_bergamot.jpg',
+    hashtags: ['#베르가못 🍋', '#만다린 🍊', '#풀향 🌿', '#흙향 🌱'],
+    momentLabel: '하루를 시작하는 매력적인 아침 🌅',
+    desc: '맑은 아침 이슬을 머금은 싱그러운 베르가못과 만다린의 상큼함이 지친 일상에 깊은 피톤치드 생기를 더해줍니다. 은은한 흙향과 잎향이 조화롭게 스며들어, 마치 숲속의 맑은 공기를 마시는 듯 인공적이지 않고 자연스러운 활력을 선사합니다.'
+  },
+  'Q1_B': {
+    nameKr: '플라워 뮤게',
+    nameEn: 'FLOWER MUGUET',
+    img: 'images/flower_muguet.jpg',
+    hashtags: ['#은방울꽃 🌸', '#자몽 🍊', '#화이트플로럴 🤍'],
+    momentLabel: '사람들과 다정하게 조화되는 순간 🤝',
+    desc: '하얀 은방울꽃의 순수한 단아함과 갓 짠 자몽의 톡 쏘는 노트가 화사하게 어우러진 프레시 플로럴 멀티퍼퓸입니다. 억지스럽지 않고 은은하게 피어나는 꽃향기가 다가오는 상대방에게 기분 좋은 설렘과 기억하고 싶은 인상을 안겨줍니다.'
+  },
+  'Q1_C': {
+    nameKr: '베리 머스크',
+    nameEn: 'BERRY MUSK',
+    img: 'images/berry_musk.jpg',
+    hashtags: ['#블랙베리 🫐', '#머스크 ☁️', '#잎향 🌿'],
+    momentLabel: '혼자만의 온전한 여유와 휴식 ☕',
+    desc: '탐스럽게 익은 블랙베리의 달콤 쌉싸름한 즙향과 나를 포근하게 감싸안는 소프트 머스크, 푸른 잎향이 겹겹이 레이어드된 오가닉 노벨리티 향입니다. 바쁜 일상에서 벗어나 혼자만의 조용하고 온전한 공간을 깊은 평온으로 채워줍니다.'
+  },
+  'Q1_D': {
+    nameKr: '스모크 로즈',
+    nameEn: 'SMOKE ROSE',
+    img: 'images/smoke_rose.jpg',
+    hashtags: ['#스모크우드 🪵', '#장미 🌹'],
+    momentLabel: '특별한 아우라가 피어나는 날 ✨',
+    desc: '그윽하게 타오르는 스모크 우드의 묵직한 잔향과 고혹적인 우아함의 딥 장미가 연출하는 감각적인 멀티퍼퓸입니다. 강렬하지만 과하지 않은 고급스러운 잔향이 당신이 지나가는 모든 자리를 한 편의 영화처럼 클래식하게 바꿉니다.'
+  }
+};
+
+// Space Mood database mapped to Q4
+const SPACE_MOODS = {
+  'Q4_A': {
+    name: '호텔 (Hotel)',
+    vibe: '정갈하고 아늑한 스위트룸 무드 🏨',
+    tip: '호텔의 고급스럽고 폭신한 패브릭처럼, 침구류나 드레스룸 커튼 주변에 2~3회 살짝 분사해 주세요. 공간 전체가 격조 높은 호텔식 안락함으로 디자인됩니다.'
+  },
+  'Q4_B': {
+    name: '정원 (Garden)',
+    vibe: '햇살과 바람이 스치는 맑은 정원 무드 🪴',
+    tip: '햇살이 따스하게 들어오는 창가 베란다나 식물이 모여있는 거실 공간 공중에 살짝 노즐을 눌러주세요. 바람이 스칠 때마다 싱그러운 대자연의 미소가 맴돕니다.'
+  },
+  'Q4_C': {
+    name: '바 (Bar)',
+    vibe: '감각적 조명 아래 깊 깊어지는 라운지 무드 🍸',
+    tip: '외출 전 아우터 하단이나 자주 머무는 소파 쿠션 패브릭에 살짝 터치해 주세요. 은은하고 매혹적인 아우라가 당신의 동선을 따라 감각적으로 퍼져나갑니다.'
+  },
+  'Q4_D': {
+    name: '서점 (Bookstore)',
+    vibe: '종이 향과 조용한 차분함이 머무는 서재 무드 📖',
+    tip: '책상 위 나무 트레이나 원목 서가 근처 공간에 향을 매칭해 주세요. 마음에 집중할 수 있는 편안함과 조용한 휴식을 선사하는 나만의 몰입 분위기가 완성됩니다.'
+  }
+};
+
+// Lifestyle Mappings
+const LIFESTYLE_MAP = {
+  'Q2_A': '카페 혼자여유',
+  'Q2_B': '친목 활력파',
+  'Q2_C': '탐방 데이트파',
+  'Q2_D': '집콕 힐링파',
+  
+  'Q2_1_A': '캠퍼스 학생',
+  'Q2_1_B': '직장인/알바',
+  'Q2_1_C': '이동/액티브',
+  'Q2_1_D': '홈라이프'
+};
+
+const DESIRE_IMAGE_MAP = {
+  'Q3_A': '설렘 200% 로맨틱 썸 분위기',
+  'Q3_B': '당당하고 스마트한 커리어 아우라',
+  'Q3_C': '발랄하고 친근한 비타민 E 타입',
+  'Q3_D': '세련되고 유니크한 영앤리치 무드'
+};
+
+// App State
+let currentStepIndex = 0;
+let userAnswers = {};
+
+// DOM Elements
+const stepIntro = document.getElementById('step-intro');
+const stepQuestion = document.getElementById('step-question');
+const stepLoading = document.getElementById('step-loading');
+const stepResult = document.getElementById('step-result');
+
+const qSubBadge = document.getElementById('q-sub-badge');
+const qTitle = document.getElementById('q-title');
+const qSubtitle = document.getElementById('q-subtitle');
+const answerList = document.getElementById('answer-list');
+const questionStepNum = document.getElementById('question-step-num');
+const questionStepPercent = document.getElementById('question-step-percent');
+const progressBarFill = document.getElementById('progress-bar-fill');
+const btnPrev = document.getElementById('btn-prev');
+
+// Start Quiz Function
+function startQuiz() {
+  currentStepIndex = 0;
+  userAnswers = {};
+  showStep('question');
+  renderQuestion();
+}
+
+// Render Current Question
+function renderQuestion() {
+  const qData = QUESTIONS[currentStepIndex];
+  const total = QUESTIONS.length;
+  const currentNum = currentStepIndex + 1;
+  const percent = Math.round((currentNum / total) * 100);
+
+  // Update Header Progress
+  questionStepNum.textContent = `Q${currentNum} / ${total}`;
+  questionStepPercent.textContent = `${percent}%`;
+  progressBarFill.style.width = `${percent}%`;
+
+  // Update Question Content
+  qSubBadge.textContent = qData.badge;
+  qTitle.textContent = qData.title;
+  qSubtitle.textContent = qData.subtitle;
+
+  // Render Options
+  answerList.innerHTML = '';
+  qData.options.forEach(opt => {
+    const card = document.createElement('div');
+    card.className = 'option-card';
+    if (userAnswers[qData.id] === opt.val) {
+      card.classList.add('selected');
+    }
+
+    card.innerHTML = `
+      <div class="opt-text-wrap">
+        <span class="opt-code">${opt.code}</span>
+        <span class="opt-label">${opt.label}</span>
+      </div>
+      <span class="opt-check">✅</span>
+    `;
+
+    card.onclick = () => selectOption(qData.id, opt.val);
+    answerList.appendChild(card);
+  });
+
+  // Prev Button visibility
+  if (currentStepIndex > 0) {
+    btnPrev.classList.remove('hidden');
+  } else {
+    btnPrev.classList.add('hidden');
+  }
+}
+
+// Select Option & Advance
+function selectOption(qId, val) {
+  userAnswers[qId] = val;
+  
+  // Highlight UI momentarily
+  renderQuestion();
+
+  setTimeout(() => {
+    if (currentStepIndex < QUESTIONS.length - 1) {
+      currentStepIndex++;
+      renderQuestion();
+    } else {
+      finishQuiz();
+    }
+  }, 220);
+}
+
+// Previous Question
+function prevQuestion() {
+  if (currentStepIndex > 0) {
+    currentStepIndex--;
+    renderQuestion();
+  }
+}
+
+// Finish Quiz & Show Loading -> Result
+function finishQuiz() {
+  showStep('loading');
+
+  setTimeout(() => {
+    calculateAndShowResult();
+    showStep('result');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 1800);
+}
+
+// Calculate & Populate Result Ticket
+function calculateAndShowResult() {
+  const q1Val = userAnswers['Q1'] || 'Q1_A';
+  const q4Val = userAnswers['Q4'] || 'Q4_B';
+  const q2Val = userAnswers['Q2'] || 'Q2_A';
+  const q2_1Val = userAnswers['Q2_1'] || 'Q2_1_B';
+  const q3Val = userAnswers['Q3'] || 'Q3_A';
+
+  const perfume = PERFUMES[q1Val] || PERFUMES['Q1_A'];
+  const space = SPACE_MOODS[q4Val] || SPACE_MOODS['Q4_B'];
+
+  // 1. Set Image & Titles
+  document.getElementById('res-perfume-img').src = perfume.img;
+  document.getElementById('res-perfume-img').alt = perfume.nameKr;
+  document.getElementById('res-perfume-name').textContent = perfume.nameKr;
+  document.getElementById('res-perfume-name-en').textContent = perfume.nameEn;
+
+  // 2. Set Hashtags
+  const hashtagsContainer = document.getElementById('res-hashtags');
+  hashtagsContainer.innerHTML = '';
+  perfume.hashtags.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'ingredient-pill';
+    span.textContent = tag;
+    hashtagsContainer.appendChild(span);
+  });
+
+  // 3. Set Scent & Mood Description
+  document.getElementById('res-scent-desc').textContent = perfume.desc;
+
+  // 4. Set Receipt Breakdown Specs
+  document.getElementById('res-moment').textContent = perfume.momentLabel;
+  document.getElementById('res-space').textContent = space.name;
+  document.getElementById('res-space-vibe').textContent = space.vibe;
+  
+  const lifestyleText = `${LIFESTYLE_MAP[q2Val]} x ${LIFESTYLE_MAP[q2_1Val]}`;
+  document.getElementById('res-lifestyle').textContent = lifestyleText;
+
+  document.getElementById('res-desire-image').textContent = DESIRE_IMAGE_MAP[q3Val];
+
+  // 5. Space Styling Tip
+  document.getElementById('res-space-tip').textContent = space.tip;
+
+  // 6. Format Date & Random Receipt Serial
+  const now = new Date();
+  const dateStr = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
+  document.getElementById('receipt-date').textContent = `DATE: ${dateStr}`;
+
+  const randomNo = Math.floor(1000 + Math.random() * 9000);
+  document.getElementById('receipt-no').textContent = `NO: #MV-${randomNo}`;
+}
+
+// Show Step Card Helper
+function showStep(stepName) {
+  [stepIntro, stepQuestion, stepLoading, stepResult].forEach(card => {
+    card.classList.remove('active');
+    card.classList.add('hidden');
+  });
+
+  if (stepName === 'intro') {
+    stepIntro.classList.remove('hidden');
+    stepIntro.classList.add('active');
+  } else if (stepName === 'question') {
+    stepQuestion.classList.remove('hidden');
+    stepQuestion.classList.add('active');
+  } else if (stepName === 'loading') {
+    stepLoading.classList.remove('hidden');
+    stepLoading.classList.add('active');
+  } else if (stepName === 'result') {
+    stepResult.classList.remove('hidden');
+    stepResult.classList.add('active');
+  }
+}
+
+// Restart Quiz
+function restartQuiz() {
+  currentStepIndex = 0;
+  userAnswers = {};
+  showStep('intro');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Copy Share Link & Toast Notification
+function copyShareLink() {
+  const dummyUrl = window.location.href;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(dummyUrl).then(showToast);
+  } else {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = dummyUrl;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      showToast();
+    } catch (err) {
+      console.error('Copy failed', err);
+    }
+    document.body.removeChild(textArea);
+  }
+}
+
+function showToast() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
