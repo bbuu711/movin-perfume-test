@@ -1,5 +1,6 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST SCRIPT
+   Flow: Cover -> Brand Intro -> Questions (with Next Button) -> Loading -> Result
    ========================================================================== */
 
 // Question Data (5 Total)
@@ -116,7 +117,7 @@ const SPACE_MOODS = {
   },
   'Q4_C': {
     name: '바 (Bar)',
-    vibe: '감각적 조명 아래 깊 깊어지는 라운지 무드 🍸',
+    vibe: '감각적 조명 아래 깊어지는 라운지 무드 🍸',
     tip: '외출 전 아우터 하단이나 자주 머무는 소파 쿠션 패브릭에 살짝 터치해 주세요. 은은하고 매혹적인 아우라가 당신의 동선을 따라 감각적으로 퍼져나갑니다.'
   },
   'Q4_D': {
@@ -151,11 +152,13 @@ let currentStepIndex = 0;
 let userAnswers = {};
 
 // DOM Elements
-const stepIntro = document.getElementById('step-intro');
+const stepCover = document.getElementById('step-cover');
+const stepBrandIntro = document.getElementById('step-brand-intro');
 const stepQuestion = document.getElementById('step-question');
 const stepLoading = document.getElementById('step-loading');
 const stepResult = document.getElementById('step-result');
 
+const questionBoxAnim = document.getElementById('question-box-anim');
 const qSubBadge = document.getElementById('q-sub-badge');
 const qTitle = document.getElementById('q-title');
 const qSubtitle = document.getElementById('q-subtitle');
@@ -164,17 +167,23 @@ const questionStepNum = document.getElementById('question-step-num');
 const questionStepPercent = document.getElementById('question-step-percent');
 const progressBarFill = document.getElementById('progress-bar-fill');
 const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+const btnNextLabel = document.getElementById('btn-next-label');
 
-// Start Quiz Function
-function startQuiz() {
+// Flow Navigation
+function goToBrandIntro() {
+  showStep('brand-intro');
+}
+
+function startQuestions() {
   currentStepIndex = 0;
   userAnswers = {};
   showStep('question');
-  renderQuestion();
+  renderQuestion(true);
 }
 
-// Render Current Question
-function renderQuestion() {
+// Render Question
+function renderQuestion(animate = false) {
   const qData = QUESTIONS[currentStepIndex];
   const total = QUESTIONS.length;
   const currentNum = currentStepIndex + 1;
@@ -184,6 +193,12 @@ function renderQuestion() {
   questionStepNum.textContent = `Q${currentNum} / ${total}`;
   questionStepPercent.textContent = `${percent}%`;
   progressBarFill.style.width = `${percent}%`;
+
+  if (animate && questionBoxAnim) {
+    questionBoxAnim.classList.remove('slide-in', 'slide-out');
+    void questionBoxAnim.offsetWidth; // trigger reflow
+    questionBoxAnim.classList.add('slide-in');
+  }
 
   // Update Question Content
   qSubBadge.textContent = qData.badge;
@@ -211,6 +226,23 @@ function renderQuestion() {
     answerList.appendChild(card);
   });
 
+  // Manage Next Button state
+  const hasSelected = !!userAnswers[qData.id];
+  if (hasSelected) {
+    btnNext.classList.remove('disabled');
+    btnNext.disabled = false;
+  } else {
+    btnNext.classList.add('disabled');
+    btnNext.disabled = true;
+  }
+
+  // Next Button Label
+  if (currentStepIndex === total - 1) {
+    btnNextLabel.textContent = '결과 확인하기';
+  } else {
+    btnNextLabel.textContent = '다음 질문';
+  }
+
   // Prev Button visibility
   if (currentStepIndex > 0) {
     btnPrev.classList.remove('hidden');
@@ -219,28 +251,36 @@ function renderQuestion() {
   }
 }
 
-// Select Option & Advance
+// Select Option (Highlight & Enable Next Button)
 function selectOption(qId, val) {
   userAnswers[qId] = val;
-  
-  // Highlight UI momentarily
-  renderQuestion();
-
-  setTimeout(() => {
-    if (currentStepIndex < QUESTIONS.length - 1) {
-      currentStepIndex++;
-      renderQuestion();
-    } else {
-      finishQuiz();
-    }
-  }, 220);
+  renderQuestion(false);
 }
 
-// Previous Question
+// Next Question Click
+function nextQuestion() {
+  const qData = QUESTIONS[currentStepIndex];
+  if (!userAnswers[qData.id]) return; // Guard if not selected
+
+  if (currentStepIndex < QUESTIONS.length - 1) {
+    questionBoxAnim.classList.add('slide-out');
+    setTimeout(() => {
+      currentStepIndex++;
+      renderQuestion(true);
+    }, 200);
+  } else {
+    finishQuiz();
+  }
+}
+
+// Previous Question Click
 function prevQuestion() {
   if (currentStepIndex > 0) {
-    currentStepIndex--;
-    renderQuestion();
+    questionBoxAnim.classList.add('slide-out');
+    setTimeout(() => {
+      currentStepIndex--;
+      renderQuestion(true);
+    }, 200);
   }
 }
 
@@ -309,21 +349,26 @@ function calculateAndShowResult() {
 
 // Show Step Card Helper
 function showStep(stepName) {
-  [stepIntro, stepQuestion, stepLoading, stepResult].forEach(card => {
-    card.classList.remove('active');
-    card.classList.add('hidden');
+  [stepCover, stepBrandIntro, stepQuestion, stepLoading, stepResult].forEach(card => {
+    if (card) {
+      card.classList.remove('active');
+      card.classList.add('hidden');
+    }
   });
 
-  if (stepName === 'intro') {
-    stepIntro.classList.remove('hidden');
-    stepIntro.classList.add('active');
-  } else if (stepName === 'question') {
+  if (stepName === 'cover' && stepCover) {
+    stepCover.classList.remove('hidden');
+    stepCover.classList.add('active');
+  } else if (stepName === 'brand-intro' && stepBrandIntro) {
+    stepBrandIntro.classList.remove('hidden');
+    stepBrandIntro.classList.add('active');
+  } else if (stepName === 'question' && stepQuestion) {
     stepQuestion.classList.remove('hidden');
     stepQuestion.classList.add('active');
-  } else if (stepName === 'loading') {
+  } else if (stepName === 'loading' && stepLoading) {
     stepLoading.classList.remove('hidden');
     stepLoading.classList.add('active');
-  } else if (stepName === 'result') {
+  } else if (stepName === 'result' && stepResult) {
     stepResult.classList.remove('hidden');
     stepResult.classList.add('active');
   }
@@ -333,7 +378,7 @@ function showStep(stepName) {
 function restartQuiz() {
   currentStepIndex = 0;
   userAnswers = {};
-  showStep('intro');
+  showStep('cover');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 

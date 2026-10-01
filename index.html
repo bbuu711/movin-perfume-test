@@ -6,7 +6,7 @@
   <title>MOVIN 모빈 - 나만의 멀티퍼퓸 & 분위기 디자인 유형검사</title>
   <meta name="description" content="공간과 사람을 함께 바꾸는 모빈(MOVIN) 멀티퍼퓸. 5가지 질문으로 나만의 향수와 분위기를 디자인해보세요.">
   
-  <!-- Google Fonts: Gaegu (cute hand-drawn font) + Gowun Batang + Pretendard -->
+  <!-- Google Fonts: Gaegu + Gowun Batang + Pretendard -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Batang:wght@400;700&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,38 +38,66 @@
     <!-- Main Content Stage -->
     <main class="main-content">
 
-      <!-- ================= STEP 0: INTRO LANDING ================= -->
-      <section id="step-intro" class="quiz-card active">
+      <!-- ================= STEP 0: CLEAN COVER ================= -->
+      <section id="step-cover" class="quiz-card active">
         <div class="intro-badge">
-          <span>✨ 분위기를 디자인하다</span>
+          <span>✨ MØVIN ATMOSPHERE TEST</span>
         </div>
         
-        <h2 class="intro-title">나에게 어울리는<br><span class="highlight-text">멀티퍼퓸 & 스페이스 무드</span> 찾기</h2>
-        
-        <div class="brand-story-box">
-          <div class="story-icon">🕯️</div>
-          <p class="story-tagline">"향에서 시작하여, 공간과 사람을 함께 바꿉니다."</p>
-          <p class="story-desc">
-            '모빈(MOVIN)'은 당신의 소중한 공간과 온전히 이어지는 <strong>은은하고 자연스러운 천연 향</strong>을 담았습니다. 
-            하루 중 당신에게 가장 필요했던 순간과 좋아하는 공간을 들려주세요. 나만의 분위기를 완벽하게 디자인해줄 전용 멀티퍼퓸 리시트를 출력해 드릴게요.
-          </p>
+        <h2 class="cover-main-title">
+          나만의 분위기 &<br>
+          <span class="highlight-text">맞춤 멀티퍼퓸 찾기</span>
+        </h2>
+        <p class="cover-subtitle">당신의 하루와 좋아하는 공간에 가장 어울리는 향을 디자인해 드립니다.</p>
+
+        <div class="cover-hero-illustration">
+          <div class="hero-bottle-doodle">🧴✨</div>
+          <div class="hero-tags-row">
+            <span class="mini-tag">#은은한천연향</span>
+            <span class="mini-tag">#시간대별맞춤향</span>
+          </div>
         </div>
 
-        <div class="intro-preview-tags">
-          <span class="tag">#자연스러움</span>
-          <span class="tag">#은은한천연향</span>
-          <span class="tag">#시간대별맞춤향</span>
-          <span class="tag">#공간디자인</span>
-        </div>
-
-        <button id="btn-start" class="btn-primary" onclick="startQuiz()">
-          <span class="btn-text">내 향수 취향 찾기 시작하기</span>
+        <button id="btn-cover-start" class="btn-primary btn-smore" onclick="goToBrandIntro()">
+          <span class="btn-text">테스트 시작하기</span>
           <span class="btn-icon">➔</span>
         </button>
 
         <div class="intro-footer-note">
           <span>총 5문항 | 소요시간 약 1분</span>
         </div>
+      </section>
+
+      <!-- ================= STEP 0-1: BRAND INTRO ================= -->
+      <section id="step-brand-intro" class="quiz-card hidden">
+        <div class="intro-badge">
+          <span>🌿 BRAND STORY</span>
+        </div>
+
+        <h2 class="brand-intro-title">
+          "분위기를 디자인하다"<br>
+          <span class="highlight-text">MØVIN (모빈)</span>
+        </h2>
+
+        <div class="brand-story-box">
+          <div class="story-icon">🕯️</div>
+          <p class="story-tagline">향에서 시작하여, 공간과 사람을 함께 바꿉니다.</p>
+          <p class="story-desc">
+            '모빈'은 소중한 공간과 온전히 이어지는 <strong>은은하고 자연스러운 천연 향</strong>을 지향하는 브랜드입니다.<br><br>
+            멀티퍼퓸을 통해 매일 반복되는 시간대를 감각적으로 바꾸고, 당신만의 독보적인 분위기를 연출해 보세요.
+          </p>
+        </div>
+
+        <div class="brand-feature-chips">
+          <div class="chip-item">🌱 <span>인위적이지 않은 자연스러움</span></div>
+          <div class="chip-item">🕒 <span>시간대별 라이프 스타일 핏</span></div>
+          <div class="chip-item">🏡 <span>공간과 사람의 분위기 디자인</span></div>
+        </div>
+
+        <button id="btn-brand-next" class="btn-primary btn-smore" onclick="startQuestions()">
+          <span class="btn-text">질문 시작하기</span>
+          <span class="btn-icon">➔</span>
+        </button>
       </section>
 
       <!-- ================= STEP 1~5: QUESTION CARDS ================= -->
@@ -85,22 +113,30 @@
           </div>
         </div>
 
-        <!-- Question Title & Context -->
-        <div class="question-header">
-          <span id="q-sub-badge" class="q-badge">Question 1</span>
-          <h2 id="q-title" class="q-title">질문 제목이 들어가는 자리입니다</h2>
-          <p id="q-subtitle" class="q-subtitle">질문 부연 설명</p>
+        <!-- Animated Question Box -->
+        <div id="question-box-anim" class="question-box-anim">
+          <div class="question-header">
+            <span id="q-sub-badge" class="q-badge">Question 1</span>
+            <h2 id="q-title" class="q-title">질문 제목이 들어가는 자리입니다</h2>
+            <p id="q-subtitle" class="q-subtitle">질문 부연 설명</p>
+          </div>
+
+          <!-- Answer Options -->
+          <div id="answer-list" class="answer-options">
+            <!-- Dynamically filled by JS -->
+          </div>
         </div>
 
-        <!-- Answer Options -->
-        <div id="answer-list" class="answer-options">
-          <!-- Dynamically filled by JS -->
-        </div>
+        <!-- Smore-style Bottom Navigation Bar -->
+        <div class="smore-nav-bar">
+          <button id="btn-prev" class="btn-smore-nav btn-nav-prev hidden" onclick="prevQuestion()">
+            <span class="nav-arrow">⇠</span>
+            <span>이전</span>
+          </button>
 
-        <!-- Back Button -->
-        <div class="quiz-nav">
-          <button id="btn-prev" class="btn-secondary hidden" onclick="prevQuestion()">
-            <span>⇠ 이전 질문</span>
+          <button id="btn-next" class="btn-smore-nav btn-nav-next disabled" disabled onclick="nextQuestion()">
+            <span id="btn-next-label">다음 질문</span>
+            <span class="nav-arrow">➔</span>
           </button>
         </div>
       </section>
@@ -266,12 +302,12 @@
 
         <!-- Result Action Buttons -->
         <div class="result-actions">
-          <button class="btn-action btn-share" onclick="copyShareLink()">
+          <button class="btn-action btn-share btn-smore" onclick="copyShareLink()">
             <span class="btn-icon">🔗</span>
             <span>결과 공유하기</span>
           </button>
           
-          <button class="btn-action btn-restart" onclick="restartQuiz()">
+          <button class="btn-action btn-restart btn-smore" onclick="restartQuiz()">
             <span class="btn-icon">🔄</span>
             <span>다시 검사하기</span>
           </button>
