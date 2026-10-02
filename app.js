@@ -1,7 +1,21 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST SCRIPT
-   Flow: Cover -> Brand Intro -> Questions -> Loading (Alternating Text) -> Result -> Modal Form
+   Flow: Cover -> Brand Intro -> Questions -> Loading -> Result -> Supabase & Modal
    ========================================================================== */
+
+// SUPABASE CONFIGURATION
+// (Set your Supabase Project URL & Anon Key below to automatically store test results to Supabase table)
+const SUPABASE_URL = 'YOUR_SUPABASE_URL'; 
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+let supabaseClient = null;
+
+if (window.supabase && SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
+  try {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } catch (err) {
+    console.warn('Supabase initialization warning:', err);
+  }
+}
 
 // Question Data (5 Total)
 const QUESTIONS = [
@@ -291,7 +305,7 @@ function prevQuestion() {
 function finishQuiz() {
   showStep('loading');
 
-  // Alternating Loading Text Logic (No mention of '영수증')
+  // Alternating Loading Text Logic
   const loadingTexts = [
     '당신의 향을 디자인하는 중...',
     '나의 분위기를 찾는 중...'
@@ -400,10 +414,73 @@ function showStep(stepName) {
   }
 }
 
-// Experience Modal Form Controls
+// Format Time in User Friendly Format (e.g. 2026.10.02 07:29 PM / 12:30 PM)
+function formatTimestamp(date = new Date()) {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // hour '0' -> '12'
+  const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+  
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  
+  return `${year}.${month}.${day} ${hours}:${minutesStr} ${ampm}`;
+}
+
+// Supabase Save Helper
+async function saveToSupabase(participantInfo = null) {
+  const q1Val = userAnswers['Q1'] || 'Q1_A';
+  const q4Val = userAnswers['Q4'] || 'Q4_B';
+  const perfume = PERFUMES[q1Val] || PERFUMES['Q1_A'];
+  const space = SPACE_MOODS[q4Val] || SPACE_MOODS['Q4_B'];
+
+  const payload = {
+    q1_answer: userAnswers['Q1'] || null,
+    q2_answer: userAnswers['Q2'] || null,
+    q2_1_answer: userAnswers['Q2_1'] || null,
+    q3_answer: userAnswers['Q3'] || null,
+    q4_answer: userAnswers['Q4'] || null,
+    perfume_result: `${perfume.nameKr} (${perfume.nameEn})`,
+    space_result: space.name,
+    name: participantInfo ? participantInfo.name : null,
+    age: participantInfo ? participantInfo.age : null,
+    phone: participantInfo ? participantInfo.phone : null,
+    created_at_formatted: formatTimestamp()
+  };
+
+  console.log('MOVIN Data Payload prepared:', payload);
+
+  if (supabaseClient) {
+    try {
+      const { data, error } = await supabaseClient
+        .from('movin_test_results')
+        .insert([payload]);
+
+      if (error) {
+        console.error('Supabase save error:', error);
+      } else {
+        console.log('Successfully saved data to Supabase:', data);
+      }
+    } catch (e) {
+      console.warn('Supabase request failed:', e);
+    }
+  } else {
+    // Local storage fallback backup
+    const logs = JSON.parse(localStorage.getItem('movin_test_results') || '[]');
+    logs.push(payload);
+    localStorage.setItem('movin_test_results', JSON.stringify(logs));
+    console.log('Saved data to LocalStorage backup:', payload);
+  }
+}
+
+// Modal Form Controls
 function openModal() {
   if (experienceModal) {
     experienceModal.classList.remove('hidden');
+    validateModalForm();
   }
 }
 
@@ -413,10 +490,49 @@ function closeModal() {
   }
 }
 
+// Check if all 3 modal input fields (Name, Age, Phone) are filled
+function validateModalForm() {
+  const nameInput = document.getElementById('user-name');
+  const ageInput = document.getElementById('user-age');
+  const phoneInput = document.getElementById('user-phone');
+  const submitBtn = document.getElementById('modal-submit-btn');
+
+  if (!nameInput || !ageInput || !phoneInput || !submitBtn) return;
+
+  const isNameValid = nameInput.value.trim().length > 0;
+  const isAgeValid = ageInput.value.trim().length > 0;
+  const isPhoneValid = phoneInput.value.trim().length > 0;
+
+  if (isNameValid && isAgeValid && isPhoneValid) {
+    submitBtn.classList.remove('disabled');
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.classList.add('disabled');
+    submitBtn.disabled = true;
+  }
+}
+
+// Modal Form Submit ('신청하기')
 function handleFormSubmit(e) {
   e.preventDefault();
+
+  const nameVal = document.getElementById('user-name').value.trim();
+  const ageVal = document.getElementById('user-age').value.trim();
+  const phoneVal = document.getElementById('user-phone').value.trim();
+
+  if (!nameVal || !ageVal || !phoneVal) return;
+
+  // Save to Supabase with Participant Info
+  saveToSupabase({ name: nameVal, age: ageVal, phone: phoneVal });
+
   closeModal();
-  showToast('체험단 신청 및 검사 결과 제출이 완료되었습니다! 🌿');
+  showToast('신청하기 및 검사 결과 제출이 완료되었습니다! 🌿');
+}
+
+// Direct Result Submit ('제출하기')
+function directSubmitResult() {
+  saveToSupabase(null);
+  showToast('검사 결과가 성공적으로 제출되었습니다! 🌿');
 }
 
 // Restart Quiz -> Goes to First Cover Page (#step-cover)

@@ -1068,18 +1068,16 @@ body {
   margin-top: 2px;
 }
 
-/* Result Actions Buttons (Ratio 6:4) */
-.result-actions.ratio-6-4 {
+/* Result Actions Buttons (Single Line & Compact Submit Button Ratio) */
+.result-actions.compact-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 16px;
 }
 
 .btn-action {
-  padding: 14px 12px;
+  padding: 14px 10px;
   border-radius: 18px;
-  font-size: 0.9rem;
-  font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1087,16 +1085,24 @@ body {
   gap: 6px;
   transition: all 0.2s ease;
   border: none;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
-/* Left button 60% ratio */
+/* Left button single line fit */
 .btn-action.btn-experience {
-  flex: 6;
+  flex: 7.4;
   background: var(--primary-brand);
   color: #FFFFFF;
   box-shadow: 0 6px 16px rgba(58, 64, 54, 0.2);
-  font-size: 0.88rem;
+  white-space: nowrap;
+  padding: 14px 8px;
+}
+
+.btn-single-line {
+  white-space: nowrap;
+  font-size: 0.81rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .btn-action.btn-experience:hover {
@@ -1104,13 +1110,16 @@ body {
   transform: translateY(-2px);
 }
 
-/* Right button 40% ratio */
+/* Compact Right 제출하기 button */
 .btn-action.btn-submit-result {
-  flex: 4;
+  flex: 2.6;
   background: #EAE5DD;
   color: var(--text-main);
   border: 1px solid #D6CFC4;
-  font-size: 0.92rem;
+  white-space: nowrap;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 14px 6px;
 }
 
 .btn-action.btn-submit-result:hover {
@@ -1169,7 +1178,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(30, 34, 28, 0.65);
+  background: rgba(30, 34, 28, 0.68);
   backdrop-filter: blur(6px);
   z-index: 1000;
   display: flex;
@@ -1189,9 +1198,9 @@ body {
 .modal-card {
   background: #FFFFFF;
   border-radius: 28px;
-  padding: 30px 24px;
+  padding: 32px 24px 28px;
   width: 100%;
-  max-width: 440px;
+  max-width: 430px;
   position: relative;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
   border: 2px solid #EFEAE3;
@@ -1244,14 +1253,16 @@ body {
 
 .modal-title {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   color: var(--primary-brand);
   margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .modal-desc {
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* Modal Form Controls */
@@ -1290,8 +1301,39 @@ body {
   box-shadow: 0 0 0 3px rgba(122, 139, 123, 0.15);
 }
 
-.btn-modal-submit {
-  margin-top: 10px;
+/* Primary Modal Submit Button ('신청하기') */
+.btn-primary.btn-modal-submit {
+  width: 100%;
+  background: var(--primary-brand);
+  color: #FFFFFF;
+  border: none;
+  padding: 16px 20px;
+  border-radius: 22px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 8px 22px rgba(58, 64, 54, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 18px;
+}
+
+.btn-primary.btn-modal-submit:hover:not(.disabled) {
+  background: #252A23;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(58, 64, 54, 0.3);
+}
+
+/* Modal Submit Button Disabled State */
+.btn-primary.btn-modal-submit.disabled {
+  background: #D8D2C6;
+  color: #9C9588;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 /* Toast */
@@ -1325,7 +1367,7 @@ body {
 /* Responsive adjustments */
 @media (max-width: 480px) {
   body {
-    padding: 16px 10px 30px;
+    padding: 16px 8px 30px;
   }
   .quiz-card.classic-card {
     padding: 32px 18px;
@@ -1347,15 +1389,10 @@ body {
     width: 180px;
     height: 210px;
   }
-  .result-actions.ratio-6-4 {
-    flex-direction: row;
-  }
-  .btn-action.btn-experience {
-    font-size: 0.8rem;
-    padding: 12px 6px;
+  .btn-single-line {
+    font-size: 0.76rem;
   }
   .btn-action.btn-submit-result {
-    font-size: 0.85rem;
-    padding: 12px 6px;
+    font-size: 0.82rem;
   }
 }
