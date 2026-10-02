@@ -1,6 +1,6 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST STYLES
-   Aesthetic: Cute Hand-Drawn Doodle + Clean Luxury Slogan Cover Design
+   Aesthetic: Classic Vintage & Romance-Fantasy Perfume Atelier Cover Design
    Font: KMU80SungkokSerif (국민대학교 성곡 세리프)
    ========================================================================== */
 
@@ -182,129 +182,172 @@ body {
   }
 }
 
-/* ================= STEP 0: CLEAN BOLD COVER STYLES ================= */
-.cover-badge-wrap {
-  margin-bottom: 18px;
-}
-
-.intro-badge {
-  display: inline-block;
-  background: #F0F5EF;
-  color: var(--primary-accent);
-  border: 1px dashed var(--primary-accent);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-family: var(--font-hand);
-  font-size: 1.15rem;
-}
-
-.cover-brand-header {
-  margin-bottom: 12px;
-}
-
-.cover-subtitle-top {
-  display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
-  color: var(--primary-accent);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.cover-logo-title {
-  font-family: var(--font-serif);
-  font-size: 3.4rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--primary-brand);
-  line-height: 1;
-  margin-top: 4px;
-}
-
-.cover-main-title {
-  font-family: var(--font-serif);
-  font-size: 2.1rem;
-  line-height: 1.38;
-  color: var(--primary-brand);
-  margin-bottom: 24px;
-  font-weight: 700;
-}
-
-.cover-main-title .highlight-text {
-  background: linear-gradient(120deg, rgba(234, 168, 150, 0.25) 0%, rgba(200, 220, 195, 0.5) 100%);
-  padding: 2px 12px;
-  border-radius: 12px;
-}
-
-/* Elegant Luxury Slogan Card (KMU80SungkokSerif) */
-.cover-slogan-card {
-  background: #FAF7F3;
-  border: 1.5px solid #E6DDD3;
-  border-radius: 24px;
-  padding: 28px 20px 24px;
-  margin-bottom: 32px;
+/* ================= STEP 0: CLASSIC VINTAGE COVER STYLES ================= */
+.quiz-card.classic-card {
+  background: #FAF6EE;
+  border: 2px solid #D8CFC2;
+  border-radius: 32px;
+  padding: 42px 30px;
+  box-shadow: 0 20px 46px rgba(45, 52, 42, 0.1), inset 0 0 24px rgba(216, 207, 194, 0.25);
   position: relative;
-  box-shadow: inset 0 0 16px rgba(0,0,0,0.015), 0 8px 20px rgba(60,70,58,0.04);
+}
+
+.quiz-card.classic-card::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid #EAE0D3;
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.classic-top-header {
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
 }
 
-.slogan-accent-line {
-  width: 44px;
-  height: 2px;
-  background: var(--primary-accent);
-  border-radius: 2px;
+.classic-flourish {
+  font-size: 1.5rem;
+  color: var(--primary-accent);
+  margin-bottom: 6px;
   opacity: 0.85;
 }
 
-.slogan-serif-text {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.slogan-sub-quote {
-  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
-  font-size: 1.05rem;
-  color: var(--text-muted);
-  letter-spacing: -0.01em;
-}
-
-/* Extra Large "나만의 향" */
-.slogan-main-phrase {
-  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
-  font-size: 2.85rem;
-  font-weight: bold;
-  color: #242921;
-  letter-spacing: 0.04em;
-  line-height: 1.15;
-  background: linear-gradient(180deg, transparent 65%, rgba(148, 160, 136, 0.3) 65%);
-  display: inline-block;
-  padding: 0 8px;
-  margin-top: 4px;
-}
-
-/* Next line "디자인하세요" */
-.slogan-sub-phrase {
-  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
-  font-size: 2.0rem;
-  color: var(--primary-brand);
-  letter-spacing: 0.08em;
-  line-height: 1.25;
-  margin-top: 2px;
-}
-
-.slogan-brand-signature {
+.classic-subtitle-top {
   font-size: 0.72rem;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.3em;
   color: var(--primary-accent);
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.classic-logo-title {
+  font-family: 'KMU80SungkokSerif', serif;
+  font-size: 3.8rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #242921;
+  line-height: 1.05;
   margin-top: 4px;
+}
+
+.classic-divider-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 140px;
+  margin-top: 12px;
+  color: var(--primary-accent);
+  font-size: 0.8rem;
+}
+
+.classic-divider-line::before, .classic-divider-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #D8CFC2;
+}
+
+/* Classic Slogan Container */
+.classic-slogan-wrap {
+  background: #FFFFFF;
+  border: 1.5px solid #E4DCD0;
+  border-radius: 24px;
+  padding: 30px 22px;
+  margin-bottom: 32px;
+  box-shadow: 0 8px 24px rgba(60, 70, 58, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slogan-romantic-top {
+  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.slogan-hero-phrase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6px 0 10px;
+}
+
+/* Extra Large "나만의 향" (KMU80SungkokSerif) */
+.phrase-main {
+  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: #1F241C;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  background: linear-gradient(180deg, transparent 65%, rgba(148, 160, 136, 0.35) 65%);
+  padding: 0 10px;
+}
+
+/* Next line "디자인하세요" */
+.phrase-sub {
+  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
+  font-size: 2.15rem;
+  color: #3A4036;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  margin-top: 4px;
+}
+
+.slogan-romantic-desc {
+  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-top: 10px;
+  word-break: keep-all;
+}
+
+/* Classic Button */
+.btn-primary.btn-classic {
+  width: 100%;
+  background: #272C24;
+  color: #FFFFFF;
+  border: 1px solid #C4B8A5;
+  padding: 18px 24px;
+  border-radius: 24px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: 0.06em;
+  box-shadow: 0 8px 24px rgba(39, 44, 36, 0.22);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary.btn-classic:hover {
+  background: #191D17;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(39, 44, 36, 0.32);
+}
+
+.btn-primary.btn-classic:active {
+  transform: translateY(0);
+}
+
+.intro-footer-note.classic-note {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: var(--text-light);
+  font-weight: 600;
 }
 
 /* STEP 0-1: BRAND INTRO STYLES */
@@ -1121,21 +1164,18 @@ body {
   body {
     padding: 16px 10px 30px;
   }
-  .quiz-card {
-    padding: 26px 20px;
-    border-radius: 22px;
+  .quiz-card.classic-card {
+    padding: 32px 18px;
+    border-radius: 24px;
   }
-  .cover-logo-title {
-    font-size: 2.8rem;
+  .classic-logo-title {
+    font-size: 3.0rem;
   }
-  .cover-main-title {
-    font-size: 1.7rem;
+  .phrase-main {
+    font-size: 2.6rem;
   }
-  .slogan-main-phrase {
-    font-size: 2.3rem;
-  }
-  .slogan-sub-phrase {
-    font-size: 1.65rem;
+  .phrase-sub {
+    font-size: 1.75rem;
   }
   .receipt-content {
     padding: 18px 14px;

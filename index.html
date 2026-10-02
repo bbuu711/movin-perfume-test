@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Batang:ital,wght@0,400;0,700;1,400&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -38,40 +38,39 @@
     <!-- Main Content Stage -->
     <main class="main-content">
 
-      <!-- ================= STEP 0: ELEGANT COVER ================= -->
-      <section id="step-cover" class="quiz-card active">
-        <div class="cover-badge-wrap">
-          <span class="intro-badge">✨ MØVIN ATMOSPHERE TEST</span>
-        </div>
-        
-        <div class="cover-brand-header">
-          <span class="cover-subtitle-top">DESIGNING ATMOSPHERE</span>
-          <h1 class="cover-logo-title">MØVIN</h1>
+      <!-- ================= STEP 0: CLASSIC VINTAGE COVER ================= -->
+      <section id="step-cover" class="quiz-card classic-card active">
+        <!-- Top Classic Emblem & Logo -->
+        <div class="classic-top-header">
+          <span class="classic-flourish">⚜️</span>
+          <span class="classic-subtitle-top">PERFUME & ATMOSPHERE ATELIER</span>
+          <h1 class="classic-logo-title">MØVIN</h1>
+          <div class="classic-divider-line"><span>✦</span></div>
         </div>
 
-        <h2 class="cover-main-title">
-          나에게 어울리는<br>
-          <span class="highlight-text">향수 & 분위기 찾기</span>
-        </h2>
-
-        <!-- Elegant Luxury Slogan Card (KMU80SungkokSerif Font) -->
-        <div class="cover-slogan-card">
-          <div class="slogan-accent-line"></div>
-          <div class="slogan-serif-text">
-            <span class="slogan-sub-quote">“ 당신의 공간과 인상을 채울 ”</span>
-            <span class="slogan-main-phrase">나만의 향</span>
-            <span class="slogan-sub-phrase">디자인하세요</span>
+        <!-- Classic Vintage Slogan Container -->
+        <div class="classic-slogan-wrap">
+          <span class="slogan-romantic-top">“ 당신의 일상과 소중한 공간에 스며들 ”</span>
+          
+          <div class="slogan-hero-phrase">
+            <span class="phrase-main">나만의 향</span>
+            <span class="phrase-sub">디자인하세요</span>
           </div>
-          <span class="slogan-brand-signature">MØVIN MULTI-PERFUME LAB</span>
+
+          <p class="slogan-romantic-desc">
+            당신의 숨결이 닿는 공간마다,<br>
+            영원히 기억될 나만의 분위기가 피어납니다.
+          </p>
         </div>
 
-        <button id="btn-cover-start" class="btn-primary btn-smore" onclick="goToBrandIntro()">
-          <span class="btn-text">내 향수 취향 찾기 시작하기</span>
+        <!-- Classic CTA Button -->
+        <button id="btn-cover-start" class="btn-primary btn-classic" onclick="goToBrandIntro()">
+          <span class="btn-text">나만의 향 찾아보기</span>
           <span class="btn-icon">➔</span>
         </button>
 
-        <div class="intro-footer-note">
-          <span>총 5문항 | 소요시간 약 1분</span>
+        <div class="intro-footer-note classic-note">
+          <span>MØVIN ATELIER • 5 QUESTIONS</span>
         </div>
       </section>
 
@@ -338,6 +337,6 @@
   <!-- Toast Notification -->
   <div id="toast" class="toast">링크가 클립보드에 복사되었습니다! 🌿</div>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
