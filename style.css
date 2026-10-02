@@ -1,6 +1,6 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST STYLES
-   Aesthetic: Cute Hand-Drawn Doodle + Smore-style Clean Interactive Design
+   Aesthetic: Cute Hand-Drawn Doodle + Clean Poomang/Smore Interactive Design
    ========================================================================== */
 
 :root {
@@ -142,11 +142,12 @@ body {
 .quiz-card {
   background: var(--bg-card);
   border-radius: 28px;
-  padding: 32px 26px;
+  padding: 36px 28px;
   box-shadow: var(--shadow-cozy);
   border: 2px solid #EFEAE3;
   position: relative;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
 }
 
 .quiz-card.hidden {
@@ -173,74 +174,98 @@ body {
   }
 }
 
-/* STEP 0: CLEAN COVER STYLES */
+/* ================= STEP 0: CLEAN BOLD COVER STYLES ================= */
+.cover-badge-wrap {
+  margin-bottom: 18px;
+}
+
 .intro-badge {
   display: inline-block;
   background: #F0F5EF;
   color: var(--primary-accent);
   border: 1px dashed var(--primary-accent);
-  padding: 6px 14px;
+  padding: 6px 16px;
   border-radius: 20px;
   font-family: var(--font-hand);
   font-size: 1.15rem;
-  margin-bottom: 16px;
+}
+
+.cover-brand-header {
+  margin-bottom: 12px;
+}
+
+.cover-subtitle-top {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  color: var(--primary-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cover-logo-title {
+  font-family: var(--font-serif);
+  font-size: 3.4rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--primary-brand);
+  line-height: 1;
+  margin-top: 4px;
 }
 
 .cover-main-title {
   font-family: var(--font-serif);
-  font-size: 1.85rem;
+  font-size: 2.1rem;
   line-height: 1.38;
   color: var(--primary-brand);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  font-weight: 700;
 }
 
 .cover-main-title .highlight-text {
-  background: linear-gradient(120deg, rgba(234, 168, 150, 0.25) 0%, rgba(200, 220, 195, 0.45) 100%);
-  padding: 2px 10px;
-  border-radius: 10px;
+  background: linear-gradient(120deg, rgba(234, 168, 150, 0.25) 0%, rgba(200, 220, 195, 0.5) 100%);
+  padding: 2px 12px;
+  border-radius: 12px;
 }
 
 .cover-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 24px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+  word-break: keep-all;
 }
 
-.cover-hero-illustration {
+.cover-feature-box {
   background: #FAF7F2;
-  border-radius: 22px;
-  padding: 26px 16px;
+  border-radius: 20px;
+  padding: 18px 20px;
   border: 1.5px dashed #D8DFC8;
-  margin-bottom: 26px;
-  text-align: center;
-}
-
-.hero-bottle-doodle {
-  font-size: 3.8rem;
-  margin-bottom: 10px;
-  animation: floatBottle 3s ease-in-out infinite alternate;
-}
-
-@keyframes floatBottle {
-  0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(-8px) scale(1.05); }
-}
-
-.hero-tags-row {
+  margin-bottom: 28px;
   display: flex;
-  justify-content: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
 }
 
-.mini-tag {
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background: #FFFFFF;
-  border: 1px solid #D8DFC8;
-  color: var(--primary-brand);
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: 4px 12px;
+  border: 1px solid #E4EBDD;
+  padding: 10px 14px;
   border-radius: 14px;
+}
+
+.feature-item .item-icon {
+  font-size: 1.15rem;
+}
+
+.feature-item .item-text {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--primary-brand);
 }
 
 /* STEP 0-1: BRAND INTRO STYLES */
@@ -301,7 +326,7 @@ body {
   gap: 8px;
 }
 
-/* Smore Style Buttons */
+/* Smore / Poomang Style Buttons */
 .btn-primary.btn-smore {
   width: 100%;
   background: var(--primary-brand);
@@ -1058,11 +1083,14 @@ body {
     padding: 16px 10px 30px;
   }
   .quiz-card {
-    padding: 24px 18px;
+    padding: 26px 20px;
     border-radius: 22px;
   }
+  .cover-logo-title {
+    font-size: 2.8rem;
+  }
   .cover-main-title {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   }
   .receipt-content {
     padding: 18px 14px;
