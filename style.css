@@ -1,6 +1,6 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST STYLES
-   Aesthetic: Cute Hand-Drawn Doodle + Clean Poomang/Smore Interactive Design
+   Aesthetic: Cute Hand-Drawn Doodle + Clean Luxury Slogan Cover Design
    ========================================================================== */
 
 :root {
@@ -142,7 +142,7 @@ body {
 .quiz-card {
   background: var(--bg-card);
   border-radius: 28px;
-  padding: 36px 28px;
+  padding: 38px 28px;
   box-shadow: var(--shadow-cozy);
   border: 2px solid #EFEAE3;
   position: relative;
@@ -218,7 +218,7 @@ body {
   font-size: 2.1rem;
   line-height: 1.38;
   color: var(--primary-brand);
-  margin-bottom: 14px;
+  margin-bottom: 24px;
   font-weight: 700;
 }
 
@@ -228,44 +228,50 @@ body {
   border-radius: 12px;
 }
 
-.cover-subtitle {
-  font-size: 0.98rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  margin-bottom: 28px;
+/* Elegant Luxury Slogan Card */
+.cover-slogan-card {
+  background: #FAF7F3;
+  border: 1.5px solid #E6DDD3;
+  border-radius: 22px;
+  padding: 24px 20px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.015);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.slogan-accent-line {
+  width: 40px;
+  height: 2px;
+  background: var(--primary-accent);
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+.slogan-serif-text {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--primary-brand);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
   word-break: keep-all;
 }
 
-.cover-feature-box {
-  background: #FAF7F2;
-  border-radius: 20px;
-  padding: 18px 20px;
-  border: 1.5px dashed #D8DFC8;
-  margin-bottom: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: left;
+.slogan-serif-text strong {
+  font-weight: 700;
+  color: #272C24;
+  background: linear-gradient(180deg, transparent 65%, rgba(148, 160, 136, 0.28) 65%);
 }
 
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #FFFFFF;
-  border: 1px solid #E4EBDD;
-  padding: 10px 14px;
-  border-radius: 14px;
-}
-
-.feature-item .item-icon {
-  font-size: 1.15rem;
-}
-
-.feature-item .item-text {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--primary-brand);
+.slogan-brand-signature {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  color: var(--primary-accent);
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /* STEP 0-1: BRAND INTRO STYLES */
@@ -1091,6 +1097,9 @@ body {
   }
   .cover-main-title {
     font-size: 1.7rem;
+  }
+  .slogan-serif-text {
+    font-size: 1.05rem;
   }
   .receipt-content {
     padding: 18px 14px;
