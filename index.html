@@ -6,15 +6,13 @@
   <title>MOVIN 모빈 - 나만의 멀티퍼퓸 & 분위기 디자인 유형검사</title>
   <meta name="description" content="공간과 사람을 함께 바꾸는 모빈(MOVIN) 멀티퍼퓸. 5가지 질문으로 나만의 향수와 분위기를 디자인해보세요.">
   
-  <!-- Google Fonts: Gaegu + Gowun Batang + Pretendard -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Batang:ital,wght@0,400;0,700;1,400&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Pretendard Font (Light 300) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   
   <!-- Supabase JS Client SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
-  <link rel="stylesheet" href="style.css?v=99">
+  <link rel="stylesheet" href="style.css?v=100">
 </head>
 <body>
 
@@ -33,7 +31,7 @@
     <header class="app-header">
       <div class="brand-logo-wrap">
         <span class="logo-subtitle">DESIGNING ATMOSPHERE</span>
-        <h1 class="brand-title">MØVIN</h1>
+        <img src="images/movin_logo.png" alt="MOVIN" class="brand-logo-img">
         <span class="logo-subtext">모빈 멀티퍼퓸</span>
       </div>
     </header>
@@ -47,7 +45,7 @@
         <div class="classic-top-header">
           <span class="classic-flourish">⚜️</span>
           <span class="classic-subtitle-top">PERFUME & ATMOSPHERE ATELIER</span>
-          <h1 class="classic-logo-title">MØVIN</h1>
+          <img src="images/movin_logo.png" alt="MOVIN" class="classic-logo-img">
           <div class="classic-divider-line"><span>✦</span></div>
         </div>
 
@@ -186,7 +184,7 @@
           <div class="receipt-content">
             <!-- Receipt Header -->
             <div class="receipt-brand">
-              <div class="receipt-logo">MØVIN</div>
+              <img src="images/movin_logo.png" alt="MOVIN" class="receipt-logo-img">
               <div class="receipt-slogan">ATMOSPHERE DESIGN LAB</div>
               <div class="receipt-meta">
                 <span id="receipt-date">DATE: 2026.10.01</span>
@@ -355,7 +353,7 @@
       <div class="modal-header">
         <span class="modal-badge">✨ MOVIN EXPERIENCE</span>
         <h3 class="modal-title">시제품 체험단 신청</h3>
-        <p class="modal-desc">당신의 분위기를 담은 모빈 멀티퍼퓸을 만들어 보세요</p>
+        <p class="modal-desc">당신의 분위기를 담는 모빈 멀티 퍼퓸프로젝트에 함께 해주세요</p>
       </div>
 
       <form id="experience-form" onsubmit="handleFormSubmit(event)">
