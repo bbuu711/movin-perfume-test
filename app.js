@@ -375,8 +375,11 @@ function calculateAndShowResult() {
 
   document.getElementById('res-desire-image').textContent = DESIRE_IMAGE_MAP[q3Val];
 
-  // 5. Space Styling Tip
-  document.getElementById('res-space-tip').textContent = space.tip;
+  // 5. Space Styling Tip (if present)
+  const tipEl = document.getElementById('res-space-tip');
+  if (tipEl) {
+    tipEl.textContent = space.tip;
+  }
 
   // 6. Format Date & Random Receipt Serial
   const now = new Date();

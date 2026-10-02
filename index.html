@@ -14,7 +14,7 @@
   <!-- Supabase JS Client SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
-  <link rel="stylesheet" href="style.css?v=88">
+  <link rel="stylesheet" href="style.css?v=99">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
     <!-- Main Content Stage -->
     <main class="main-content">
 
-      <!-- ================= STEP 0: CLASSIC VINTAGE COVER ================= -->
+      <!-- ================= STEP 0: CLASSIC WOOD COVER ================= -->
       <section id="step-cover" class="quiz-card classic-card active">
         <!-- Top Classic Emblem & Logo -->
         <div class="classic-top-header">
@@ -61,8 +61,8 @@
           </div>
 
           <p class="slogan-romantic-desc">
-            당신의 숨결이 닿는 공간마다,<br>
-            영원히 기억될 나만의 분위기가 피어납니다.
+            당신이 있는 공간에서,<br>
+            나에게 딱 맞는 나만의 분위기가 피어납니다
           </p>
         </div>
 
@@ -88,19 +88,22 @@
           <span class="highlight-text">MØVIN (모빈)</span>
         </h2>
 
-        <div class="brand-story-box">
+        <!-- Expanded Prominent Brand Story Box -->
+        <div class="brand-story-box expanded-story">
           <div class="story-icon">🕯️</div>
           <p class="story-tagline">향에서 시작하여, 공간과 사람을 함께 바꿉니다.</p>
           <p class="story-desc">
-            '모빈'은 소중한 공간과 온전히 이어지는 <strong>은은하고 자연스러운 천연 향</strong>을 지향하는 브랜드입니다.<br><br>
-            멀티퍼퓸을 통해 매일 반복되는 시간대를 감각적으로 바꾸고, 당신만의 독보적인 분위기를 연출해 보세요.
+            '모빈'은 소중한 공간과 온전히 이어지는 <strong>은은하고 자연스러운 천연 향</strong>을 지향하는 멀티퍼퓸 브랜드입니다.<br><br>
+            멀티퍼퓸을 통해 매일 반복되는 공간과 시간대를 감각적으로 재디자인하고, 오직 당신에게 어울리는 특별한 인상과 아우라를 완성해 드립니다.
           </p>
         </div>
 
-        <div class="brand-feature-chips">
-          <div class="chip-item">🌱 <span>인위적이지 않은 자연스러움</span></div>
-          <div class="chip-item">🕒 <span>시간대별 라이프 스타일 핏</span></div>
-          <div class="chip-item">🏡 <span>공간과 사람의 분위기 디자인</span></div>
+        <!-- Hashtags Only Below -->
+        <div class="brand-hashtags">
+          <span>#자연스러움</span>
+          <span>#시간대별맞춤향</span>
+          <span>#공간디자인</span>
+          <span>#멀티퍼퓸</span>
         </div>
 
         <button id="btn-brand-next" class="btn-primary btn-smore" onclick="startQuestions()">
@@ -275,19 +278,6 @@
               </div>
             </div>
 
-            <div class="receipt-divider-double"></div>
-
-            <!-- Tailored Space Styling Tip -->
-            <div class="space-tip-box">
-              <div class="tip-header">
-                <span class="tip-icon">🏡</span>
-                <span class="tip-title">공간 & 사람 분위기 연출 팁</span>
-              </div>
-              <p id="res-space-tip" class="tip-text">
-                침실 커튼이나 거울 주변 공간에 2~3회 살짝 분사해 주세요. 당신의 걸음과 공간이 자연스럽게 하나가 됩니다.
-              </p>
-            </div>
-
             <div class="receipt-divider-dashed"></div>
 
             <!-- Receipt Footer & Barcode -->
@@ -310,11 +300,11 @@
           <div class="receipt-cut-bottom"></div>
         </div>
 
-        <!-- Result Action Buttons (Single Line & Compact Submit Button Ratio) -->
+        <!-- Result Action Buttons -->
         <div class="result-actions compact-actions">
           <button class="btn-action btn-experience btn-smore" onclick="openModal()">
             <span class="btn-icon">🎁</span>
-            <span class="btn-single-line">MOVIN 시제품 체험단 참여하러 가기</span>
+            <span class="btn-single-line">MOVIN 시제품 체험단 참여</span>
           </button>
           
           <button class="btn-action btn-submit-result btn-smore" onclick="directSubmitResult()">
@@ -383,6 +373,6 @@
   <!-- Toast Notification -->
   <div id="toast" class="toast">신청하기 및 검사 결과 제출이 완료되었습니다! 🌿</div>
 
-  <script src="app.js?v=88"></script>
+  <script src="app.js?v=99"></script>
 </body>
 </html>

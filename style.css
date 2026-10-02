@@ -1,6 +1,6 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST STYLES
-   Aesthetic: Classic Vintage & Romance-Fantasy Perfume Atelier Cover Design
+   Aesthetic: Warm Wood & Beige/Brown Vintage Perfume Atelier Cover Design
    Font: KMU80SungkokSerif (국민대학교 성곡 세리프)
    ========================================================================== */
 
@@ -12,25 +12,25 @@
 }
 
 :root {
-  --bg-cream: #FAF5EF;
-  --bg-card: #FFFFFF;
-  --bg-receipt: #FFFDF9;
+  --bg-cream: #F5EFE6;          /* Warm soft linen/wood beige background */
+  --bg-card: #FFFDF9;           /* Cozy warm ivory paper card */
+  --bg-receipt: #FAF6EE;        /* Warm vintage parchment wood receipt */
   
-  --primary-brand: #3A4036;     /* Deep Sage Natural Charcoal */
-  --primary-accent: #7A8B7B;    /* Soft Natural Sage Green */
-  --accent-olive: #94A088;      /* Pastel Olive Leaf */
-  --accent-peach: #EAA896;      /* Cute Soft Peach */
-  --accent-lavender: #C2B6CD;   /* Soft Pastel Lavender */
+  --primary-brand: #362C26;      /* Deep wood charcoal brown */
+  --primary-accent: #8C6D53;     /* Soft natural oak wood brown */
+  --accent-olive: #7D8B6D;       /* Sage wood leaf green */
+  --accent-peach: #D99B82;       /* Soft warm wood peach */
+  --accent-lavender: #BAA99B;    /* Warm taupe lavender */
   --accent-cream-yellow: #FFF4DC;
   
-  --text-main: #2C302B;
-  --text-muted: #6B7268;
-  --text-light: #9EA59C;
+  --text-main: #2E2621;         /* Warm dark brown charcoal text */
+  --text-muted: #736458;        /* Warm wood brown muted text */
+  --text-light: #9E8F82;        /* Light wood beige text */
 
-  --border-pencil: 2px dashed #C8D1C5;
-  --border-solid: 1.5px solid #E2E8E0;
-  --shadow-cozy: 0 14px 36px rgba(60, 70, 58, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
-  --shadow-receipt: 0 18px 40px rgba(45, 50, 43, 0.12);
+  --border-pencil: 2px dashed #D4C9BC;
+  --border-solid: 1.5px solid #E6DDD0;
+  --shadow-cozy: 0 14px 36px rgba(54, 44, 38, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-receipt: 0 18px 40px rgba(54, 44, 38, 0.12);
 
   --font-hand: 'Gaegu', cursive, sans-serif;
   --font-serif: 'KMU80SungkokSerif', 'Gowun Batang', serif;
@@ -152,7 +152,7 @@ body {
   border-radius: 28px;
   padding: 38px 28px;
   box-shadow: var(--shadow-cozy);
-  border: 2px solid #EFEAE3;
+  border: 2px solid #EBE2D5;
   position: relative;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: center;
@@ -182,13 +182,13 @@ body {
   }
 }
 
-/* ================= STEP 0: CLASSIC VINTAGE COVER STYLES ================= */
+/* ================= STEP 0: CLASSIC WOOD VINTAGE COVER STYLES ================= */
 .quiz-card.classic-card {
-  background: #FAF6EE;
-  border: 2px solid #D8CFC2;
+  background: #F9F4EB;
+  border: 2px solid #D6CBB9;
   border-radius: 32px;
   padding: 42px 30px;
-  box-shadow: 0 20px 46px rgba(45, 52, 42, 0.1), inset 0 0 24px rgba(216, 207, 194, 0.25);
+  box-shadow: 0 20px 46px rgba(54, 44, 38, 0.1), inset 0 0 24px rgba(214, 203, 185, 0.25);
   position: relative;
 }
 
@@ -199,7 +199,7 @@ body {
   left: 10px;
   right: 10px;
   bottom: 10px;
-  border: 1px solid #EAE0D3;
+  border: 1px solid #E8DEC7;
   border-radius: 24px;
   pointer-events: none;
 }
@@ -231,7 +231,7 @@ body {
   font-size: 3.8rem;
   font-weight: 700;
   letter-spacing: 0.22em;
-  color: #242921;
+  color: var(--primary-brand);
   line-height: 1.05;
   margin-top: 4px;
 }
@@ -250,17 +250,17 @@ body {
   content: '';
   flex: 1;
   height: 1px;
-  background: #D8CFC2;
+  background: #D6CBB9;
 }
 
 /* Classic Slogan Container */
 .classic-slogan-wrap {
   background: #FFFFFF;
-  border: 1.5px solid #E4DCD0;
+  border: 1.5px solid #E4D9CA;
   border-radius: 24px;
   padding: 30px 22px;
   margin-bottom: 32px;
-  box-shadow: 0 8px 24px rgba(60, 70, 58, 0.04);
+  box-shadow: 0 8px 24px rgba(54, 44, 38, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -281,15 +281,15 @@ body {
   margin: 6px 0 10px;
 }
 
-/* Extra Large "나만의 향" (KMU80SungkokSerif) */
+/* Extra Large "나만의 향" (KMU80SungkokSerif) - Font weight 500 (1pt lighter than bold) */
 .phrase-main {
   font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
   font-size: 3.2rem;
-  font-weight: bold;
-  color: #1F241C;
+  font-weight: 500;
+  color: #2D241E;
   letter-spacing: 0.05em;
   line-height: 1.1;
-  background: linear-gradient(180deg, transparent 65%, rgba(148, 160, 136, 0.35) 65%);
+  background: linear-gradient(180deg, transparent 65%, rgba(140, 109, 83, 0.2) 65%);
   padding: 0 10px;
 }
 
@@ -297,7 +297,7 @@ body {
 .phrase-sub {
   font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
   font-size: 2.15rem;
-  color: #3A4036;
+  color: var(--primary-brand);
   letter-spacing: 0.08em;
   line-height: 1.25;
   margin-top: 4px;
@@ -315,7 +315,7 @@ body {
 /* Classic Button */
 .btn-primary.btn-classic {
   width: 100%;
-  background: #272C24;
+  background: var(--primary-brand);
   color: #FFFFFF;
   border: 1px solid #C4B8A5;
   padding: 18px 24px;
@@ -328,14 +328,14 @@ body {
   justify-content: center;
   gap: 10px;
   letter-spacing: 0.06em;
-  box-shadow: 0 8px 24px rgba(39, 44, 36, 0.22);
+  box-shadow: 0 8px 24px rgba(54, 44, 38, 0.22);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-primary.btn-classic:hover {
-  background: #191D17;
+  background: #231C18;
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(39, 44, 36, 0.32);
+  box-shadow: 0 12px 28px rgba(54, 44, 38, 0.32);
 }
 
 .btn-primary.btn-classic:active {
@@ -353,59 +353,80 @@ body {
 /* STEP 0-1: BRAND INTRO STYLES */
 .brand-intro-title {
   font-family: var(--font-serif);
-  font-size: 1.7rem;
+  font-size: 1.75rem;
   color: var(--primary-brand);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   line-height: 1.4;
 }
 
-.brand-story-box {
-  background: #FAF7F2;
-  border-radius: 18px;
-  padding: 20px;
-  border: 1.5px dashed #D8DFC8;
+.brand-intro-title .highlight-text {
+  color: var(--primary-accent);
+  font-weight: 700;
+}
+
+/* Expanded Prominent Brand Story Box */
+.brand-story-box.expanded-story {
+  background: #FAF4EB;
+  border-radius: 22px;
+  padding: 26px 22px;
+  border: 1.5px dashed #D8C9B8;
   margin-bottom: 20px;
   text-align: left;
+  box-shadow: inset 0 2px 8px rgba(140, 109, 83, 0.04);
 }
 
 .story-icon {
-  font-size: 1.8rem;
-  margin-bottom: 6px;
+  font-size: 2.0rem;
+  margin-bottom: 8px;
 }
 
 .story-tagline {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   color: var(--primary-brand);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
 
 .story-desc {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.65;
+  font-size: 0.96rem;
+  color: var(--text-main);
+  line-height: 1.75;
+  word-break: keep-all;
 }
 
-.brand-feature-chips {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 26px;
-  text-align: left;
-}
-
-.chip-item {
-  background: #F3F7F2;
-  border: 1px solid #E2EDE0;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 0.9rem;
+.story-desc strong {
   color: var(--primary-brand);
-  font-weight: 600;
+  background: rgba(140, 109, 83, 0.15);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+/* Hashtags Only Below Brand Story */
+.brand-hashtags {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
+  margin-bottom: 28px;
+}
+
+.brand-hashtags span {
+  background: #F4ECE1;
+  color: var(--primary-accent);
+  border: 1px solid #DFCFC0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+}
+
+.brand-hashtags span:hover {
+  background: #EFE4D6;
+  color: var(--primary-brand);
 }
 
 /* Smore / Poomang Style Buttons */
