@@ -1,6 +1,6 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST SCRIPT
-   Flow: Cover -> Brand Intro -> Questions (with Next Button) -> Loading -> Result
+   Flow: Cover -> Brand Intro -> Questions -> Loading (Alternating Text) -> Result -> Modal Form
    ========================================================================== */
 
 // Question Data (5 Total)
@@ -150,6 +150,7 @@ const DESIRE_IMAGE_MAP = {
 // App State
 let currentStepIndex = 0;
 let userAnswers = {};
+let loadingInterval = null;
 
 // DOM Elements
 const stepCover = document.getElementById('step-cover');
@@ -157,6 +158,7 @@ const stepBrandIntro = document.getElementById('step-brand-intro');
 const stepQuestion = document.getElementById('step-question');
 const stepLoading = document.getElementById('step-loading');
 const stepResult = document.getElementById('step-result');
+const experienceModal = document.getElementById('experience-modal');
 
 const questionBoxAnim = document.getElementById('question-box-anim');
 const qSubBadge = document.getElementById('q-sub-badge');
@@ -169,6 +171,7 @@ const progressBarFill = document.getElementById('progress-bar-fill');
 const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
 const btnNextLabel = document.getElementById('btn-next-label');
+const loadingTitle = document.getElementById('loading-title');
 
 // Flow Navigation
 function goToBrandIntro() {
@@ -284,15 +287,38 @@ function prevQuestion() {
   }
 }
 
-// Finish Quiz & Show Loading -> Result
+// Finish Quiz & Show Loading (Alternating Text) -> Result
 function finishQuiz() {
   showStep('loading');
 
+  // Alternating Loading Text Logic (No mention of '영수증')
+  const loadingTexts = [
+    '당신의 향을 디자인하는 중...',
+    '나의 분위기를 찾는 중...'
+  ];
+  let textIndex = 0;
+  if (loadingTitle) {
+    loadingTitle.textContent = loadingTexts[0];
+  }
+
+  if (loadingInterval) clearInterval(loadingInterval);
+  loadingInterval = setInterval(() => {
+    textIndex = (textIndex + 1) % loadingTexts.length;
+    if (loadingTitle) {
+      loadingTitle.style.opacity = 0;
+      setTimeout(() => {
+        loadingTitle.textContent = loadingTexts[textIndex];
+        loadingTitle.style.opacity = 1;
+      }, 150);
+    }
+  }, 900);
+
   setTimeout(() => {
+    if (loadingInterval) clearInterval(loadingInterval);
     calculateAndShowResult();
     showStep('result');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 1800);
+  }, 2200);
 }
 
 // Calculate & Populate Result Ticket
@@ -374,7 +400,26 @@ function showStep(stepName) {
   }
 }
 
-// Restart Quiz
+// Experience Modal Form Controls
+function openModal() {
+  if (experienceModal) {
+    experienceModal.classList.remove('hidden');
+  }
+}
+
+function closeModal() {
+  if (experienceModal) {
+    experienceModal.classList.add('hidden');
+  }
+}
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+  closeModal();
+  showToast('체험단 신청 및 검사 결과 제출이 완료되었습니다! 🌿');
+}
+
+// Restart Quiz -> Goes to First Cover Page (#step-cover)
 function restartQuiz() {
   currentStepIndex = 0;
   userAnswers = {};
@@ -382,32 +427,11 @@ function restartQuiz() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Copy Share Link & Toast Notification
-function copyShareLink() {
-  const dummyUrl = window.location.href;
-
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(dummyUrl).then(showToast);
-  } else {
-    // Fallback for older browsers
-    const textArea = document.createElement('textarea');
-    textArea.value = dummyUrl;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try {
-      document.execCommand('copy');
-      showToast();
-    } catch (err) {
-      console.error('Copy failed', err);
-    }
-    document.body.removeChild(textArea);
-  }
-}
-
-function showToast() {
+function showToast(msg) {
   const toast = document.getElementById('toast');
+  if (msg) toast.textContent = msg;
   toast.classList.add('show');
   setTimeout(() => {
     toast.classList.remove('show');
-  }, 2500);
+  }, 2800);
 }
