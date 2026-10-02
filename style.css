@@ -1,7 +1,7 @@
 /* ==========================================================================
    MOVIN (모빈) - 분위기를 디자인하다 TYPE TEST STYLES
-   Aesthetic: Warm Wood & Beige/Brown Vintage Perfume Atelier Cover Design
-   Font: KMU80SungkokSerif (국민대학교 성곡 세리프)
+   Aesthetic: Rich Outdoor Wood & Chestnut Brown Atelier Design
+   Fonts: KMU80SungkokSerif (Title) + GmarketSans (Descriptions)
    ========================================================================== */
 
 @font-face {
@@ -11,29 +11,36 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+}
+
 :root {
-  --bg-cream: #F5EFE6;          /* Warm soft linen/wood beige background */
-  --bg-card: #FFFDF9;           /* Cozy warm ivory paper card */
-  --bg-receipt: #FAF6EE;        /* Warm vintage parchment wood receipt */
+  --bg-cream: #F3ECE2;          /* Rich warm wood/tan outdoor backdrop */
+  --bg-card: #FFFDF9;           /* Crisp warm paper card */
+  --bg-receipt: #FAF3E8;        /* Vintage parchment wood ticket */
   
-  --primary-brand: #362C26;      /* Deep wood charcoal brown */
-  --primary-accent: #8C6D53;     /* Soft natural oak wood brown */
+  --primary-brand: #3A2316;      /* Rich deep chestnut brown (High outdoor contrast) */
+  --primary-accent: #865230;     /* Warm oak brown accent */
+  --accent-warm-wood: #A3643B;   /* Cinnamon wood brown */
   --accent-olive: #7D8B6D;       /* Sage wood leaf green */
   --accent-peach: #D99B82;       /* Soft warm wood peach */
-  --accent-lavender: #BAA99B;    /* Warm taupe lavender */
-  --accent-cream-yellow: #FFF4DC;
   
-  --text-main: #2E2621;         /* Warm dark brown charcoal text */
-  --text-muted: #736458;        /* Warm wood brown muted text */
-  --text-light: #9E8F82;        /* Light wood beige text */
+  --text-main: #2B180E;         /* Deep espresso brown text (Crisp readability) */
+  --text-muted: #614636;        /* Warm medium brown text */
+  --text-light: #947966;        /* Light wood tan text */
 
-  --border-pencil: 2px dashed #D4C9BC;
-  --border-solid: 1.5px solid #E6DDD0;
-  --shadow-cozy: 0 14px 36px rgba(54, 44, 38, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
-  --shadow-receipt: 0 18px 40px rgba(54, 44, 38, 0.12);
+  --border-pencil: 2px dashed #CBB39D;
+  --border-solid: 1.5px solid #D2BEAB;
+  --shadow-cozy: 0 14px 36px rgba(58, 35, 22, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-receipt: 0 18px 40px rgba(58, 35, 22, 0.16);
 
   --font-hand: 'Gaegu', cursive, sans-serif;
   --font-serif: 'KMU80SungkokSerif', 'Gowun Batang', serif;
+  --font-desc: 'GmarketSansMedium', 'Pretendard', sans-serif;
   --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -304,10 +311,10 @@ body {
 }
 
 .slogan-romantic-desc {
-  font-family: 'KMU80SungkokSerif', 'Gowun Batang', serif;
-  font-size: 0.94rem;
+  font-family: var(--font-desc);
+  font-size: 0.92rem;
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.6;
   margin-top: 10px;
   word-break: keep-all;
 }
@@ -390,9 +397,10 @@ body {
 }
 
 .story-desc {
-  font-size: 0.96rem;
+  font-family: var(--font-desc);
+  font-size: 0.94rem;
   color: var(--text-main);
-  line-height: 1.75;
+  line-height: 1.7;
   word-break: keep-all;
 }
 
@@ -547,6 +555,7 @@ body {
 }
 
 .q-subtitle {
+  font-family: var(--font-desc);
   font-size: 0.88rem;
   color: var(--text-muted);
 }
@@ -717,7 +726,8 @@ body {
 }
 
 .loading-desc {
-  font-size: 0.9rem;
+  font-family: var(--font-desc);
+  font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 30px;
@@ -961,6 +971,7 @@ body {
 }
 
 .scent-desc-text {
+  font-family: var(--font-desc);
   font-size: 0.92rem;
   color: var(--text-main);
   line-height: 1.7;
@@ -1018,34 +1029,36 @@ body {
   word-break: keep-all;
 }
 
-/* Space Styling Tip Box */
-.space-tip-box {
-  background: #F2F6F1;
-  border-radius: 14px;
-  padding: 14px;
+/* Space Styling Tip Box (Compact Layout) */
+.space-tip-box.compact-tip {
+  background: #F6ECE0;
+  border-radius: 12px;
+  padding: 10px 14px;
   text-align: left;
-  border: 1.5px solid #D6E4D4;
+  border: 1px solid #DFC9B5;
 }
 
 .tip-header {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
-.tip-icon { font-size: 1.1rem; }
+.tip-icon { font-size: 0.95rem; }
 .tip-title {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--primary-brand);
 }
 
 .tip-text {
-  font-size: 0.86rem;
-  color: var(--text-muted);
-  line-height: 1.55;
+  font-family: var(--font-desc);
+  font-size: 0.84rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  word-break: keep-all;
 }
 
 /* Receipt Footer & Barcode */
@@ -1281,6 +1294,7 @@ body {
 }
 
 .modal-desc {
+  font-family: var(--font-desc);
   font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.5;

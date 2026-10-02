@@ -101,7 +101,6 @@
         <!-- Hashtags Only Below -->
         <div class="brand-hashtags">
           <span>#자연스러움</span>
-          <span>#시간대별맞춤향</span>
           <span>#공간디자인</span>
           <span>#멀티퍼퓸</span>
         </div>
@@ -280,6 +279,19 @@
 
             <div class="receipt-divider-dashed"></div>
 
+            <!-- Space & Personal Atmosphere Tip (Compact) -->
+            <div class="space-tip-box compact-tip">
+              <div class="tip-header">
+                <span class="tip-icon">💡</span>
+                <span class="tip-title">공간 & 분위기 연출 팁</span>
+              </div>
+              <p id="res-space-tip" class="tip-text">
+                공간에 매칭되는 연출 팁 내용이 입력됩니다.
+              </p>
+            </div>
+
+            <div class="receipt-divider-dashed"></div>
+
             <!-- Receipt Footer & Barcode -->
             <div class="receipt-footer">
               <p class="receipt-thankyou">THANK YOU FOR DESIGNING WITH MØVIN</p>
@@ -360,6 +372,11 @@
         <div class="form-group">
           <label for="user-phone">전화번호 <span>*</span></label>
           <input type="tel" id="user-phone" required placeholder="예: 010-1234-5678" autocomplete="tel" oninput="validateModalForm()">
+        </div>
+
+        <div class="form-group">
+          <label for="user-meeting">가능한 미팅 날짜/시간 <span>*</span></label>
+          <input type="text" id="user-meeting" required placeholder="예: 10월 5일 오후 2시" autocomplete="off" oninput="validateModalForm()">
         </div>
 
         <button type="submit" id="modal-submit-btn" class="btn-primary btn-modal-submit disabled" disabled>

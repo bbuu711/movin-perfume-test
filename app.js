@@ -451,6 +451,7 @@ async function saveToSupabase(participantInfo = null) {
     name: participantInfo ? participantInfo.name : null,
     age: participantInfo ? participantInfo.age : null,
     phone: participantInfo ? participantInfo.phone : null,
+    meeting_time: participantInfo ? participantInfo.meeting : null,
     created_at_formatted: formatTimestamp()
   };
 
@@ -493,20 +494,22 @@ function closeModal() {
   }
 }
 
-// Check if all 3 modal input fields (Name, Age, Phone) are filled
+// Check if all 4 modal input fields (Name, Age, Phone, Meeting Date/Time) are filled
 function validateModalForm() {
   const nameInput = document.getElementById('user-name');
   const ageInput = document.getElementById('user-age');
   const phoneInput = document.getElementById('user-phone');
+  const meetingInput = document.getElementById('user-meeting');
   const submitBtn = document.getElementById('modal-submit-btn');
 
-  if (!nameInput || !ageInput || !phoneInput || !submitBtn) return;
+  if (!nameInput || !ageInput || !phoneInput || !meetingInput || !submitBtn) return;
 
   const isNameValid = nameInput.value.trim().length > 0;
   const isAgeValid = ageInput.value.trim().length > 0;
   const isPhoneValid = phoneInput.value.trim().length > 0;
+  const isMeetingValid = meetingInput.value.trim().length > 0;
 
-  if (isNameValid && isAgeValid && isPhoneValid) {
+  if (isNameValid && isAgeValid && isPhoneValid && isMeetingValid) {
     submitBtn.classList.remove('disabled');
     submitBtn.disabled = false;
   } else {
@@ -522,11 +525,12 @@ function handleFormSubmit(e) {
   const nameVal = document.getElementById('user-name').value.trim();
   const ageVal = document.getElementById('user-age').value.trim();
   const phoneVal = document.getElementById('user-phone').value.trim();
+  const meetingVal = document.getElementById('user-meeting').value.trim();
 
-  if (!nameVal || !ageVal || !phoneVal) return;
+  if (!nameVal || !ageVal || !phoneVal || !meetingVal) return;
 
   // Save to Supabase with Participant Info
-  saveToSupabase({ name: nameVal, age: ageVal, phone: phoneVal });
+  saveToSupabase({ name: nameVal, age: ageVal, phone: phoneVal, meeting: meetingVal });
 
   closeModal();
   showToast('신청하기 및 검사 결과 제출이 완료되었습니다! 🌿');
