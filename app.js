@@ -533,13 +533,13 @@ function handleFormSubmit(e) {
   saveToSupabase({ name: nameVal, age: ageVal, phone: phoneVal, meeting: meetingVal });
 
   closeModal();
-  showToast('신청하기 및 검사 결과 제출이 완료되었습니다! 🌿');
+  showToast('신청이 완료되었습니다!');
 }
 
 // Direct Result Submit ('제출하기')
 function directSubmitResult() {
   saveToSupabase(null);
-  showToast('검사 결과가 성공적으로 제출되었습니다! 🌿');
+  showToast('제출되었습니다!');
 }
 
 // Restart Quiz -> Goes to First Cover Page (#step-cover)
