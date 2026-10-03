@@ -1053,6 +1053,94 @@ body {
   word-break: keep-all;
 }
 
+/* Perfume Taste Score Breakdown Box */
+.score-breakdown-box {
+  background: #FAF3EA;
+  border: 1px solid #E2D3C2;
+  border-radius: 14px;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.score-box-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.score-box-icon { font-size: 1.0rem; }
+.score-box-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--primary-brand);
+}
+
+.score-bars-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.score-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.score-item-name {
+  width: 92px;
+  font-family: var(--font-desc);
+  font-weight: 300;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.score-track-bg {
+  flex: 1;
+  height: 8px;
+  background: #EAE0D3;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.score-track-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-accent), var(--accent-warm-wood));
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.score-item-row.winner .score-track-fill {
+  background: linear-gradient(90deg, #A3643B, #3A2316);
+}
+
+.score-item-row.winner .score-item-name {
+  font-weight: 600;
+  color: var(--primary-brand);
+}
+
+.score-item-pts {
+  width: 34px;
+  text-align: right;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 0.84rem;
+  color: var(--primary-brand);
+}
+
+.score-explain-note {
+  font-family: var(--font-desc);
+  font-weight: 300;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 6px;
+}
+
 /* Space Styling Tip Box (Compact Layout) */
 .space-tip-box.compact-tip {
   background: #F6ECE0;

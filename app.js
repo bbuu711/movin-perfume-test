@@ -334,15 +334,88 @@ function finishQuiz() {
   }, 2200);
 }
 
+// Weighted Points Mapping per Option Value (5 Questions total)
+const PERFUME_KEYS = {
+  'GREEN': { key: 'Q1_A', nameKr: '그린 베르가못' },
+  'MUGUET': { key: 'Q1_B', nameKr: '플라워 뮤게' },
+  'BERRY': { key: 'Q1_C', nameKr: '베리 머스크' },
+  'ROSE': { key: 'Q1_D', nameKr: '스모크 로즈' }
+};
+
+const OPTION_SCORES = {
+  // Q1: 향이 필요한 순간 (3점)
+  'Q1_A': { GREEN: 3, MUGUET: 0, BERRY: 1, ROSE: 0 },
+  'Q1_B': { GREEN: 0, MUGUET: 3, BERRY: 0, ROSE: 1 },
+  'Q1_C': { GREEN: 1, MUGUET: 0, BERRY: 3, ROSE: 0 },
+  'Q1_D': { GREEN: 0, MUGUET: 1, BERRY: 0, ROSE: 3 },
+
+  // Q2: 나에게 가까운 주말 (2점)
+  'Q2_A': { GREEN: 1, MUGUET: 0, BERRY: 2, ROSE: 0 },
+  'Q2_B': { GREEN: 1, MUGUET: 2, BERRY: 0, ROSE: 0 },
+  'Q2_C': { GREEN: 0, MUGUET: 1, BERRY: 0, ROSE: 2 },
+  'Q2_D': { GREEN: 0, MUGUET: 0, BERRY: 2, ROSE: 1 },
+
+  // Q2_1: 평일의 나 (2점)
+  'Q2_1_A': { GREEN: 2, MUGUET: 1, BERRY: 0, ROSE: 0 },
+  'Q2_1_B': { GREEN: 0, MUGUET: 0, BERRY: 1, ROSE: 2 },
+  'Q2_1_C': { GREEN: 2, MUGUET: 0, BERRY: 0, ROSE: 1 },
+  'Q2_1_D': { GREEN: 0, MUGUET: 1, BERRY: 2, ROSE: 0 },
+
+  // Q3: 기억되고 싶은 이미지 (3점)
+  'Q3_A': { GREEN: 0, MUGUET: 3, BERRY: 1, ROSE: 0 },
+  'Q3_B': { GREEN: 2, MUGUET: 0, BERRY: 0, ROSE: 2 },
+  'Q3_C': { GREEN: 1, MUGUET: 3, BERRY: 0, ROSE: 0 },
+  'Q3_D': { GREEN: 0, MUGUET: 0, BERRY: 1, ROSE: 3 },
+
+  // Q4: 좋아하는 공간 (2점)
+  'Q4_A': { GREEN: 0, MUGUET: 1, BERRY: 1, ROSE: 2 },
+  'Q4_B': { GREEN: 3, MUGUET: 1, BERRY: 0, ROSE: 0 },
+  'Q4_C': { GREEN: 0, MUGUET: 0, BERRY: 0, ROSE: 3 },
+  'Q4_D': { GREEN: 1, MUGUET: 0, BERRY: 3, ROSE: 0 }
+};
+
+function calculatePerfumeScores() {
+  const scores = { GREEN: 0, MUGUET: 0, BERRY: 0, ROSE: 0 };
+
+  Object.values(userAnswers).forEach(val => {
+    if (OPTION_SCORES[val]) {
+      scores.GREEN += OPTION_SCORES[val].GREEN;
+      scores.MUGUET += OPTION_SCORES[val].MUGUET;
+      scores.BERRY += OPTION_SCORES[val].BERRY;
+      scores.ROSE += OPTION_SCORES[val].ROSE;
+    }
+  });
+
+  // Tie breaker bonus based on Q1
+  const q1Val = userAnswers['Q1'];
+  if (q1Val === 'Q1_A') scores.GREEN += 0.1;
+  else if (q1Val === 'Q1_B') scores.MUGUET += 0.1;
+  else if (q1Val === 'Q1_C') scores.BERRY += 0.1;
+  else if (q1Val === 'Q1_D') scores.ROSE += 0.1;
+
+  // Determine highest scoring perfume
+  let winningKey = 'GREEN';
+  let maxScore = -1;
+  Object.keys(scores).forEach(key => {
+    if (scores[key] > maxScore) {
+      maxScore = scores[key];
+      winningKey = key;
+    }
+  });
+
+  return { scores, winnerPerfumeKey: PERFUME_KEYS[winningKey].key, winningType: winningKey };
+}
+
 // Calculate & Populate Result Ticket
 function calculateAndShowResult() {
-  const q1Val = userAnswers['Q1'] || 'Q1_A';
+  const { scores, winnerPerfumeKey, winningType } = calculatePerfumeScores();
+
   const q4Val = userAnswers['Q4'] || 'Q4_B';
   const q2Val = userAnswers['Q2'] || 'Q2_A';
   const q2_1Val = userAnswers['Q2_1'] || 'Q2_1_B';
   const q3Val = userAnswers['Q3'] || 'Q3_A';
 
-  const perfume = PERFUMES[q1Val] || PERFUMES['Q1_A'];
+  const perfume = PERFUMES[winnerPerfumeKey] || PERFUMES['Q1_A'];
   const space = SPACE_MOODS[q4Val] || SPACE_MOODS['Q4_B'];
 
   // 1. Set Image & Titles
@@ -374,13 +447,43 @@ function calculateAndShowResult() {
 
   document.getElementById('res-desire-image').textContent = DESIRE_IMAGE_MAP[q3Val];
 
-  // 5. Space Styling Tip (if present)
+  // 5. Render Score Breakdown Bars
+  const scoreBarsList = document.getElementById('score-bars-list');
+  if (scoreBarsList) {
+    scoreBarsList.innerHTML = '';
+    const scoreItems = [
+      { name: '그린 베르가못', pts: Math.floor(scores.GREEN), key: 'GREEN' },
+      { name: '플라워 뮤게', pts: Math.floor(scores.MUGUET), key: 'MUGUET' },
+      { name: '베리 머스크', pts: Math.floor(scores.BERRY), key: 'BERRY' },
+      { name: '스모크 로즈', pts: Math.floor(scores.ROSE), key: 'ROSE' }
+    ];
+
+    const maxPtsInRun = Math.max(...scoreItems.map(i => i.pts), 1);
+
+    scoreItems.forEach(item => {
+      const isWinner = item.key === winningType;
+      const pct = Math.round((item.pts / maxPtsInRun) * 100);
+      
+      const row = document.createElement('div');
+      row.className = `score-item-row ${isWinner ? 'winner' : ''}`;
+      row.innerHTML = `
+        <span class="score-item-name">${item.name} ${isWinner ? '👑' : ''}</span>
+        <div class="score-track-bg">
+          <div class="score-track-fill" style="width: ${pct}%;"></div>
+        </div>
+        <span class="score-item-pts">${item.pts}점</span>
+      `;
+      scoreBarsList.appendChild(row);
+    });
+  }
+
+  // 6. Space Styling Tip (if present)
   const tipEl = document.getElementById('res-space-tip');
   if (tipEl) {
     tipEl.textContent = space.tip;
   }
 
-  // 6. Format Date & Random Receipt Serial
+  // 7. Format Date & Random Receipt Serial
   const now = new Date();
   const dateStr = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.${String(now.getDate()).padStart(2, '0')}`;
   document.getElementById('receipt-date').textContent = `DATE: ${dateStr}`;
