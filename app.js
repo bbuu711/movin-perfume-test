@@ -417,11 +417,11 @@ function showStep(stepName) {
   }
 }
 
-// Format Time in User Friendly Format (e.g. 2026.10.02 07:29 PM / 12:30 PM)
+// Format Time in User Friendly Format (e.g. 2026.10.03 12:30pm, 1:10am)
 function formatTimestamp(date = new Date()) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const ampm = hours >= 12 ? 'pm' : 'am';
   hours = hours % 12;
   hours = hours ? hours : 12; // hour '0' -> '12'
   const minutesStr = minutes < 10 ? '0' + minutes : minutes;
@@ -430,7 +430,16 @@ function formatTimestamp(date = new Date()) {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   
-  return `${year}.${month}.${day} ${hours}:${minutesStr} ${ampm}`;
+  return `${year}.${month}.${day} ${hours}:${minutesStr}${ampm}`;
+}
+
+// Option Text Helper for Clean Database Inspection
+function getOptionText(qId, val) {
+  if (!val) return null;
+  const q = QUESTIONS.find(item => item.id === qId);
+  if (!q) return val;
+  const opt = q.options.find(o => o.val === val);
+  return opt ? `${opt.label} [${val}]` : val;
 }
 
 // Supabase Save Helper
@@ -441,11 +450,11 @@ async function saveToSupabase(participantInfo = null) {
   const space = SPACE_MOODS[q4Val] || SPACE_MOODS['Q4_B'];
 
   const payload = {
-    q1_answer: userAnswers['Q1'] || null,
-    q2_answer: userAnswers['Q2'] || null,
-    q2_1_answer: userAnswers['Q2_1'] || null,
-    q3_answer: userAnswers['Q3'] || null,
-    q4_answer: userAnswers['Q4'] || null,
+    q1_answer: getOptionText('Q1', userAnswers['Q1']),
+    q2_answer: getOptionText('Q2', userAnswers['Q2']),
+    q2_1_answer: getOptionText('Q2_1', userAnswers['Q2_1']),
+    q3_answer: getOptionText('Q3', userAnswers['Q3']),
+    q4_answer: getOptionText('Q4', userAnswers['Q4']),
     perfume_result: `${perfume.nameKr} (${perfume.nameEn})`,
     space_result: space.name,
     name: participantInfo ? participantInfo.name : null,
