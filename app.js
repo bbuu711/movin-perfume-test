@@ -4,9 +4,8 @@
    ========================================================================== */
 
 // SUPABASE CONFIGURATION
-// (Set your Supabase Project URL & Anon Key below to automatically store test results to Supabase table)
-const SUPABASE_URL = 'YOUR_SUPABASE_URL'; 
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://jalyhmwzwxpsemswodro.supabase.co'; 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphbHlobXd6d3hwc2Vtc3dvZHJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA5NzA4MDQsImV4cCI6MjEwNjU0NjgwNH0.2jvNs9oYqbOYIhbp6Km3VTnOgFO54vhaDaALs4Mg8N8';
 let supabaseClient = null;
 
 if (window.supabase && SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY') {
